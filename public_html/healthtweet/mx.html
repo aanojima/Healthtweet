@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"/>
+
+		<!-- Location-Disease Information and Data -->
+		<script src="countries.js"></script>
+		<script>
+			var name = "Mexico";
+			var disease = "Flu";
+			var latitude = countries[name]["latitude"];
+			var longitude = countries[name]["longitude"];
+			var coordinates = [latitude, longitude];
+			var zoom = countries[name]["zoom"];
+
+			// Title
+			var title = document.createElement("title");
+			title.innerHTML = "HealthMap | HealthTweet - " + disease + " - " + name;
+			document.getElementsByTagName("head")[0].appendChild(title)
+
+			// Map Data
+			var mapDataElement = document.createElement("script");
+			mapDataElement.src = "data/" + disease + "/" + name + "MapData.js";
+			document.getElementsByTagName("head")[0].appendChild(mapDataElement);
+
+			// Time Data
+			var timeDataElement = document.createElement("script");
+			timeDataElement.src = "data/" + disease + "/" + name + "TimeData.js";
+			document.getElementsByTagName("head")[0].appendChild(timeDataElement);
+		</script>
+
+		<link rel="icon" type="image/png" href="css/images/hm.png"></link>
+
+		<!-- JQuery and UI -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.js"></script>
+		<script src ="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+		<!-- Google Maps -->
+		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC9fjLg9UIYuNHCxwI39Qdg6TKPI5pr3ZI&libraries=geometry,visualization&sensor=true"></script>
+		<script src="containsLatLng.js"></script>
+		<script src="markerclusterer.js"></script>
+		<script src="map.js"></script>
+
+		<!-- Google Analytics Tracking -->
+		<script src="analytics.js"></script>
+
+		<!-- Google Charts -->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="timeseries.js"></script>
+		<script src="download.js"></script>
+
+		<!-- Layout and JQuery CSS -->
+		<link href="css/customlayout.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/jquery-ui-dark-hive.css" />
+
+		<!-- jQRangeSlider -->
+		<script src="jQRangeSlider-5.1.1/jQAllRangeSliders-withRuler-min.js"></script>
+		<script src="customSlider.js"></script>
+		<link rel="stylesheet" href="css/slider.css" type="text/css" />
+
+		<!-- JQuery Widgets -->
+		<script src="widgets.js"></script>
+		<script src="locations.js"></script>
+
+	</head>
+	<body id="body">
+		<div id="header">
+			<img id="logo" src="css/images/HealthTweet-Logo.gif" onclick="window.location.href='index'"></img>
+			<div id="results"></div>
+			<div id="menu_buttons_div">
+				<div id="search" class="menu_button"></div>
+				<div id="timeseries" class="menu_button"></div>
+				<div id="map_tools" class="menu_button"></div>
+				<div id="drawing" class="menu_button"></div>
+				<div id="twitter" class="menu_button"></div>
+			</div>
+		</div>
+		<div id="container">
+			<div id="menu_popups">
+				<div id="map_tools_menu" class="menu_popup"><b>MAP OPTIONS AND SETTINGS</b>
+					<script>$("#map_tools_menu").hide();</script><br>
+					<div id="buttons">
+						<hr><div class="div_settings_checkbox">
+							<input type="checkbox" id="marker" name="mapdisplay" onclick="toggleMarkermap()" checked>Markermap</input><br>
+							<input type="checkbox" id="heat" name="mapdisplay" onclick="toggleHeatmap()">Heatmap</input>
+							<input type="checkbox" id="normalizer" onclick="toggleNormalize()">Normalize</input><br>
+							<input type="checkbox" id="vector" name="mapdisplay" onclick="toggleVectormap()">Vectormap</input><br>
+						</div><hr>
+						<div class="div_settings_button"><button id="gradiefyer" class="settings_button" onclick="changeGradient()">Change Gradient</button></div><hr>
+						<div class="div_settings_slider">Opacity<div class="settings_slider" id="opacity_slider"></div></div><hr>
+						<div class="div_settings_slider">Radius<div class="settings_slider" id="radius_slider"></div></div>
+					</div>
+				</div>
+				<div id="timeseries_div" class="menu_popup">
+					<script>$("#timeseries_div").hide();</script>
+					<div id="chart_div"></div>
+					<div><button id="csvDownload" onclick="csvDownload()">Download CSV</button></div>
+				</div>
+				<div id="search_menu" class="menu_popup">
+					<script>$("#search_menu").hide();</script>
+					<select id="select" onchange="window.location.href=this.value"></select>
+				</div>
+				<div id="drawing_menu" class="menu_popup">
+					<script>$("#drawing_menu").hide();</script>
+					<div id="drawing_buttons"><b>DRAWING</b><br>
+						<input type="checkbox" onclick="toggleRegionmap()">Drawing Mode</input><br>
+					</div><hr>
+					<div>
+						<b>Instructions</b>
+						<p>Enable map-drawing by checking "Drawing Mode."  Then start drawing on the map by clicking at any location.  Draw any shape by clicking on other locations on the map and the points will automatically be connected.  When finshed selecting all points, click the starting location (red marker) to complete the region.  To edit the shape or position of the region simply drag the vertices or region, respectively.  If you want the timeseries to display tweets within a region, select the region by clicking on it once.  Note that the shape can be dragged but not modified once it has been selected.  To remodify the shape, reclick the region.  Note that the timeseries will not display tweets when a region is being remodified.  Right-click on a region to delete it.  Multiple regions may be utilized at any time.  To disable "Drawing Mode," uncheck "Drawing Mode".  This will only hide the drawn regions until reuse.</p>
+					</div>
+				</div>
+				<div id="twitter_feed" class="menu_popup">
+					<script>$("#twitter_feed").hide();</script>
+					<a class="twitter-timeline" href="https://twitter.com/search?q=flu+influenza" data-widget-id="345253956517261312">Tweets about "flu influenza"</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+			</div>
+			<div id="map_container">
+				<div id="map_canvas"></div>
+				<div id="slider"></div>
+			</div>
+		</div>
+	</body>
+</html>

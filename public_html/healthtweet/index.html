@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HealthMap | HealthTweet</title>
+
+	<!-- JQuery and UI -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.js"></script>
+	<script src ="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+	<script src="analytics.js"></script>
+	<script src="locations.js"></script>
+</head>
+<body style="text-align:center">
+	<div id="Logo" style="width:1600px;margin-top:300px">
+		<img src="css/images/HealthTweet-Logo.gif" style="cursor:pointer"></img>
+	</div>
+	<div id="navigation" style="width:1600px">
+
+		<div id="about" style="position:absolute;left:316px;width:316px;float:left">
+			<button onclick="window.location.href='healthtweet'">About</button>
+		</div>
+		<div id="selector" style="position:absolute;left:632px;width:316px;float:left">
+			<select id="select" onchange="window.location.href=this.value"></select>
+		</div>
+		<div id="MoreLinks" style="position:absolute;left:948px;width:316px;float:left">
+			More Links
+		</div>
+	</div>
+<body>
+</html>

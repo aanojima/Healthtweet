@@ -1,0 +1,210 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 600px;
+/*  background-image:url("images/twitter-background.jpg");
+  background-size:cover;*/
+  background-color: #b3d1ff;
+  /*background-color: #f4f3f0;*/
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+#header {
+  width:100%;
+  min-width:600px;
+  height:80px;
+  position:absolute;
+  z-index:5;
+  top:0px;
+  /*background: #444444 url(images/ui-bg_highlight-soft_44_444444_1x100.png);*/
+  /*background-repeat: repeat-x; */
+  /*background-color:#00a0d1;*/
+  /*background-color: #4c769b;*/
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00a0d1), to(#008db8));
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00a0d1), to(#4c769b));*/
+  border-bottom: 1px solid #000;
+}
+
+#logo {
+  margin-left:10px;
+  height:72px;
+  cursor:pointer;
+  float:left;
+  position:absolute;
+}
+
+#select {
+}
+
+#container {
+  position:absolute;
+  /*width: 100%;*/
+  /*height:600px;*/
+  top:80px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+}
+
+#map_container {
+  position:relative;
+  width:100%;
+  min-width: 600px;
+  height:100%;
+}
+
+#map-canvas, #map_canvas {
+  position: relative;
+  z-index:0;
+  /*height: 695px;*/
+  height:100%;
+  width: 100%;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map-canvas, #map_canvas {
+    height: 650px;
+  }
+}
+
+/*#map_tools {
+  float:right;
+  position: absolute;
+  top:40px;
+  width:30px;
+  height:30px;
+}*/
+
+#menu_buttons_div {
+  position:absolute;
+  float:right;
+  right:0px;
+}
+
+.menu_button {
+  position: relative;
+  top:40px;
+  width:30px;
+  height:30px;
+  right:5px;
+}
+
+.menu_popup {
+  position:absolute;
+  z-index: 1;
+  float:right;
+  top:0px;
+  right:0px;
+  /*border:1px solid black;*/
+  /*box-shadow: 10px 10px 5px #888888;*/
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  /*background-color: #4c769b;*/
+}
+
+#menu_popups {
+  position:absolute;
+  width:100%;
+  height:0px;
+  float:right;
+  right:0px;
+  z-index: 1;
+}
+
+#map_tools_menu {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #444;
+  color: white;
+  /*background:#68a1d6;*/
+  top:0px;
+  right:0px;
+  padding:10px;
+}
+
+#search_menu {
+  /*height:50px;*/
+  /*width:300px;*/
+  background: #444;
+  padding:5px;
+  /*background:#68a1d6;*/
+}
+
+#select {
+/*  top:5px;
+  bottom:5px;
+  left:5px;
+  right:5px;*/
+  height:40px;
+  width:310px;
+  /*margin:5px;*/
+}
+
+#feedback_div {
+  height:50px;
+  width:300px;
+  background: #444;
+  color:#fff;
+}
+
+.settings_button {
+  width: 150px;
+}
+
+.div_settings_button {
+  width: 300px;
+  color: rgb(0,0,0);
+}
+
+.settings_slider {
+  margin: 5px 15px;
+  border-color: rgb(255,255,255);
+}
+
+#slider {
+  position: relative;
+  z-index:4;
+  bottom: 50px;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+}
+
+#playback {
+  float:left;
+}
+
+#timeseries_div {
+  background:white;
+}
+
+#chart_div {
+  width:410px;
+}
+
+#csvDownload {
+  float:left;
+}
+
+#twitter_feed {
+  border: none;
+  box-shadow: none;
+  height:50%;
+}
+
+#drawing_menu {
+  width:300px;
+  height:510px;
+  background: #444;
+  color:white;
+  padding:10px;
+}
+
+.gm-style-iw {
+  color: black;
+}
